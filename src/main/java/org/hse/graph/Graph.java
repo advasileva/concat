@@ -1,4 +1,4 @@
-package org.hse;
+package org.hse.graph;
 
 import java.util.List;
 

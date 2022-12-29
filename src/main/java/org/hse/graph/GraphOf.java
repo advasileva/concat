@@ -1,10 +1,11 @@
-package org.hse;
+package org.hse.graph;
 
 import java.util.List;
 import java.util.Map;
 
 public final class GraphOf<T> implements Graph<T> {
     private final Map<T, List<T>> edges;
+
     public GraphOf(Map<T, List<T>> edges) {
         this.edges = edges;
     }

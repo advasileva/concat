@@ -1,10 +1,10 @@
-package org.hse;
+package org.hse.source;
 
 import java.util.List;
 import java.util.Map;
 
 public final class SourceDirectory extends SourceEnvelope {
-    protected SourceDirectory(String source) {
+    public SourceDirectory(String source) {
         super(source);
     }
 

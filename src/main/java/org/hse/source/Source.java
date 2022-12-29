@@ -1,4 +1,4 @@
-package org.hse;
+package org.hse.source;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package org.hse;
+package org.hse.source;
 
 import java.io.File;
 

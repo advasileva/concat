@@ -1,5 +1,11 @@
 package org.hse;
 
+import org.hse.graph.Graph;
+import org.hse.graph.GraphOf;
+import org.hse.source.Content;
+import org.hse.source.Source;
+import org.hse.source.SourceDirectory;
+
 import java.io.IOException;
 
 public final class Concat {
