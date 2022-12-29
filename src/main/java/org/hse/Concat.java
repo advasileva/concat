@@ -19,11 +19,15 @@ public final class Concat {
 
     public void exec() throws IOException {
         Source source = new SourceDirectory(this.source);
-        Graph<Content> graph = new GraphOf<>(source.getDependencies());
-        if (graph.hasCycle()) {
-
-        } else {
-            // for source in graph.reorder(); source.resolve();
+        var deps = source.getDependencies();
+        for(var d : deps.keySet()) {
+            System.out.println(d + " : " + deps.get(d));
         }
+//        Graph<Content> graph = new GraphOf<>(source.getDependencies());
+//        if (graph.hasCycle()) {
+//
+//        } else {
+//            // for source in graph.reorder(); source.resolve();
+//        }
     }
 }

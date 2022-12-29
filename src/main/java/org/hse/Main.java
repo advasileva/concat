@@ -8,7 +8,7 @@ public class Main {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter source directory");
         String source = reader.nextLine();
-        System.out.println("Enter target directory");
+        System.out.println("Enter target file");
         String target = reader.nextLine();
         try {
             new Concat(source, target).exec();
