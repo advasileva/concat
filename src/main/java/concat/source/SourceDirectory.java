@@ -1,4 +1,4 @@
-package org.hse.source;
+package concat.source;
 
 import java.io.File;
 import java.io.IOException;

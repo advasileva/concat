@@ -1,4 +1,4 @@
-package org.hse;
+package concat;
 
 import java.io.IOException;
 import java.util.Scanner;

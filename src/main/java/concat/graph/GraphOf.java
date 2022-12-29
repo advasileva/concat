@@ -1,4 +1,4 @@
-package org.hse.graph;
+package concat.graph;
 
 import java.util.List;
 import java.util.Map;

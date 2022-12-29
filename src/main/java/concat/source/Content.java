@@ -1,4 +1,4 @@
-package org.hse.source;
+package concat.source;
 
 public interface Content {
 }
