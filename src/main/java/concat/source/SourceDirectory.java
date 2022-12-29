@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public final class SourceDirectory extends SourceEnvelope {
-    public SourceDirectory(String source) {
-        super(source);
+    public SourceDirectory(String source, String root) {
+        super(source, root);
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class SourceDirectory extends SourceEnvelope {
             Source source;
 
             if (file.isFile()) {
-                source = new SourceFile(fullName);
+                source = new SourceFile(fullName, getRoot());
             } else {
-                source = new SourceDirectory(fullName);
+                source = new SourceDirectory(fullName, getRoot());
             }
 
             dependencies.putAll(source.getDependencies());
