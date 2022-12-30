@@ -1,7 +1,6 @@
 package concat.source;
 
 import java.io.File;
-import java.nio.file.Path;
 
 /**
  * Decorator for the source that controls access
@@ -13,7 +12,7 @@ public abstract class SourceEnvelope implements Source {
     private final File source;
 
     /**
-     * AAbsolute path to the root directory of the source
+     * Absolute path to the root directory of the source
      */
     private final String root;
 
@@ -29,12 +28,12 @@ public abstract class SourceEnvelope implements Source {
     }
 
     /**
-     * TODO check and fix
+     * Get the absolute path to the source
      *
-     * @return
+     * @return string representation of the path
      */
-    protected Path getPath() {
-        return source.toPath();
+    protected String getPath() {
+        return source.getPath();
     }
 
     /**
@@ -49,7 +48,7 @@ public abstract class SourceEnvelope implements Source {
     /**
      * Get the absolute path to the root directory
      *
-     * @return string representation of the path
+     * @return string representation of the root path
      */
     protected String getRoot() {
         return root;

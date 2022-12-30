@@ -6,13 +6,13 @@ import java.util.Scanner;
 /**
  * Entry point
  */
-public class Main {
+public final class Main {
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
 
-        System.out.println("Enter source directory (abs path)");
+        System.out.println("Enter source directory (abs path):");
         String source = reader.nextLine();
-        System.out.println("Enter target file (abs path)");
+        System.out.println("Enter target file (abs path):");
         String target = reader.nextLine();
 
         try {

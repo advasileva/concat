@@ -25,7 +25,7 @@ public final class SourceDirectory extends SourceEnvelope {
     public Map<Content, List<Content>> getDependencies() throws IOException {
         var dependencies = new HashMap<Content, List<Content>>();
         for (var name : list()) {
-            String fullName = Path.of(getPath().toString(), name).toString();
+            String fullName = Path.of(getPath(), name).toString();
             var file = new File(fullName);
             Source source;
 

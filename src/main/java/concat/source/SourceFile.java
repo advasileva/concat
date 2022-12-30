@@ -69,7 +69,7 @@ public final class SourceFile extends SourceEnvelope implements Content {
      * @throws IOException if there is a problem with the current file
      */
     private List<String> getLines() throws IOException {
-        return Files.readAllLines(getPath());
+        return Files.readAllLines(Path.of(getPath()));
     }
 
     @Override
