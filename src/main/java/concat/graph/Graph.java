@@ -1,7 +1,7 @@
 package concat.graph;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Interface representing a graph
@@ -9,16 +9,9 @@ import java.util.List;
  */
 public interface Graph<T> {
     /**
-     * Check if there is a cycle in the graph
-     * @return checking result
-     */
-    Boolean hasCycle();
-
-    /**
      * Sorts the vertices of the graph so that all
      * dependent vertices are earlier than the current vertex
      * @return list of sorted vertices
-     * @throws InvalidAlgorithmParameterException TODO del
      */
-    List<T> reorder() throws InvalidAlgorithmParameterException;
+    Optional<List<T>> reorder();
 }

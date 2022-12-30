@@ -24,54 +24,69 @@ public final class GraphOf<T> implements Graph<T> {
     }
 
     @Override
-    public Boolean hasCycle() {
+    public Optional<List<T>> reorder() {
         try {
-            reorder();
-            return false;
-        } catch (Exception e) {
-            return true;
+            return Optional.of(topologicalSort());
+        } catch (InvalidAlgorithmParameterException exc) {
+            return Optional.empty();
         }
     }
 
-    @Override
-    public List<T> reorder() throws InvalidAlgorithmParameterException {
+    /**
+     * Sorts vertices in the connectivity component
+     * using the topological sorting algorithm from the article:
+     * https://habr.com/ru/post/100953/
+     *
+     * @return list of sorted vertices
+     * @throws InvalidAlgorithmParameterException if there is a cycle
+     */
+    public List<T> topologicalSort() throws InvalidAlgorithmParameterException {
         List<T> order = new ArrayList<>();
         Set<T> white = new HashSet<>(edges.keySet());
         Set<T> gray = new HashSet<>();
-        Set<T> black = new HashSet<>();
 
         while (white.iterator().hasNext()) {
-            dfs(white.iterator().next(), white, gray, black, order);
+            dfs(white.iterator().next(), white, gray, order);
         }
 
         return order;
     }
 
     /**
-     * Recursively sorts vertices in the connectivity component
-     * using the topological sorting algorithm from the article:
-     * https://habr.com/ru/post/100953/
+     * Recursively DFS traversal
      *
      * @param curr  current vertex
      * @param white set of unvisited vertices
      * @param gray  set of partly visited vertices
-     * @param black TODO del
      * @param order list of ordered visited vertices
-     * @throws InvalidAlgorithmParameterException TODO refactor
+     * @throws InvalidAlgorithmParameterException if there is a cycle
      */
-    private void dfs(T curr, Set<T> white, Set<T> gray, Set<T> black, List<T> order) throws InvalidAlgorithmParameterException {
+    private void dfs(T curr, Set<T> white, Set<T> gray, List<T> order) throws InvalidAlgorithmParameterException {
         white.remove(curr);
         gray.add(curr);
+
         for (var vertice : edges.get(curr)) {
             if (gray.contains(vertice)) {
+                printCycle(curr, gray);
                 throw new InvalidAlgorithmParameterException();
             } else if (white.contains(vertice)) {
-                dfs(vertice, white, gray, black, order);
+                dfs(vertice, white, gray, order);
             }
         }
 
         gray.remove(curr);
-        black.add(curr);
         order.add(curr);
+    }
+
+    /**
+     * Prints cycle
+     */
+    private void printCycle(T curr, Set<T> cycle) {
+        System.out.println("Cycle detected: vertex depends on itself");
+        System.out.println("Dependent vertex: " + curr);
+        System.out.println("The dependence was discovered at the stage of considering the vertices:");
+        for (var vertex : cycle) {
+            System.out.println(vertex);
+        }
     }
 }

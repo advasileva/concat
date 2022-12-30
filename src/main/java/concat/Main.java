@@ -1,7 +1,6 @@
 package concat;
 
 import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
 import java.util.Scanner;
 
 /**
@@ -20,10 +19,7 @@ public class Main {
             new Concat(source, target).exec();
             System.out.println("Concatenation succeeded");
         } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-            // TODO del:
-        } catch (InvalidAlgorithmParameterException e) {
-            System.out.println(e.getMessage());
+            System.out.println("I\\O exception: " + exception);
         }
     }
 }

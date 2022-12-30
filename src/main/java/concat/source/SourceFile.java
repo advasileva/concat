@@ -18,7 +18,7 @@ public final class SourceFile extends SourceEnvelope implements Content {
      * @param source absolute path to the source
      * @param root   absolute path to the root directory
      */
-    protected SourceFile(String source, String root) {
+    public SourceFile(String source, String root) {
         super(source, root);
     }
 
@@ -70,5 +70,10 @@ public final class SourceFile extends SourceEnvelope implements Content {
      */
     private List<String> getLines() throws IOException {
         return Files.readAllLines(getPath());
+    }
+
+    @Override
+    public String toString() {
+        return title();
     }
 }
