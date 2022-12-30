@@ -40,7 +40,6 @@ public final class SourceFile extends SourceEnvelope implements Content {
         List<Content> dependencies = new ArrayList<>();
 
         for (var line : getLines()) {
-            // TODO decompose into method
             if (line.startsWith("require ‘") && line.endsWith("’")) {
                 String name = line.substring(9, line.length() - 1);
                 String fullName = Path.of(getRoot(), name).toString();

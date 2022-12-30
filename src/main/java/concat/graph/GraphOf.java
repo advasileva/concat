@@ -65,12 +65,12 @@ public final class GraphOf<T> implements Graph<T> {
         white.remove(curr);
         gray.add(curr);
 
-        for (var vertice : edges.get(curr)) {
-            if (gray.contains(vertice)) {
+        for (var vertex : edges.get(curr)) {
+            if (gray.contains(vertex)) {
                 printCycle(curr, gray);
                 throw new InvalidAlgorithmParameterException();
-            } else if (white.contains(vertice)) {
-                dfs(vertice, white, gray, order);
+            } else if (white.contains(vertex)) {
+                dfs(vertex, white, gray, order);
             }
         }
 
