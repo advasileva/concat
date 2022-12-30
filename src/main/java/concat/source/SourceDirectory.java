@@ -7,7 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Source that is the directory
+ */
 public final class SourceDirectory extends SourceEnvelope {
+    /**
+     * Ctor.
+     *
+     * @param source absolute path to the source
+     * @param root   absolute path to the root directory
+     */
     public SourceDirectory(String source, String root) {
         super(source, root);
     }

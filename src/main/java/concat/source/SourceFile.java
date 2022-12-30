@@ -1,13 +1,23 @@
 package concat.source;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * The source that is the file with content
+ */
 public final class SourceFile extends SourceEnvelope implements Content {
+    /**
+     * Ctor.
+     *
+     * @param source absolute path to the source
+     * @param root   absolute path to the root directory
+     */
     protected SourceFile(String source, String root) {
         super(source, root);
     }
@@ -29,7 +39,8 @@ public final class SourceFile extends SourceEnvelope implements Content {
     public Map<Content, List<Content>> getDependencies() throws IOException {
         List<Content> dependencies = new ArrayList<>();
 
-        for(var line : Files.readAllLines(getPath(), Charset.defaultCharset())) {
+        for (var line : getLines()) {
+            // TODO decompose into method
             if (line.startsWith("require ‘") && line.endsWith("’")) {
                 String name = line.substring(9, line.length() - 1);
                 String fullName = Path.of(getRoot(), name).toString();
@@ -50,6 +61,13 @@ public final class SourceFile extends SourceEnvelope implements Content {
         return getPath().toString();
     }
 
+    /**
+     * Auxiliary method for getting a list of strings
+     * (it is better to read one by one using an iterator)
+     *
+     * @return list of strings with file content
+     * @throws IOException if there is a problem with the current file
+     */
     private List<String> getLines() throws IOException {
         return Files.readAllLines(getPath());
     }
